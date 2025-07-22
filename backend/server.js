@@ -5,7 +5,7 @@ const app = express()
 
 const { connectToDatabase } = require('./utils/db')
 const middleware = require('./utils/middleware.js')
-const config = require('./utils/config.js')
+const config = require('./config/config.js')
 
 app.use(express.json())
 
