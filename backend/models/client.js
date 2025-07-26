@@ -2,7 +2,18 @@ const { Model, DataTypes } = require('sequelize')
 
 const { sequelize } = require('../utils/db')
 
-class Client extends Model {}
+class Client extends Model {
+	static associate(models) {
+		Client.hasMany(models.Transaction, {
+			foreignKey: {
+				name: 'clientId',
+				allowNull: false,
+			},
+			as: 'transactions',
+			onDelete: 'CASCADE',
+		})
+	}
+}
 
 Client.init(
 	{
