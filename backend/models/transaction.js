@@ -12,6 +12,17 @@ class Transaction extends Model {
 			as: 'client',
 			onDelete: 'CASCADE',
 		})
+
+		Transaction.belongsToMany(models.Particular, {
+			through: models.TransactionParticular,
+			foreignKey: {
+				name: 'transactionId',
+				allowNull: false,
+			},
+			otherKey: 'particularId',
+			as: 'particulars',
+			onDelete: 'CASCADE',
+		})
 	}
 }
 

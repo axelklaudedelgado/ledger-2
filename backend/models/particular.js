@@ -2,7 +2,20 @@ const { Model, DataTypes } = require('sequelize')
 
 const { sequelize } = require('../utils/db')
 
-class Particular extends Model {}
+class Particular extends Model {
+	static associate(models) {
+		Particular.belongsToMany(models.Transaction, {
+			through: models.TransactionParticular,
+			foreignKey: {
+				name: 'particularId',
+				allowNull: false,
+			},
+			otherKey: 'transactionId',
+			as: 'transactions',
+			onDelete: 'CASCADE',
+		})
+	}
+}
 
 Particular.init(
 	{
