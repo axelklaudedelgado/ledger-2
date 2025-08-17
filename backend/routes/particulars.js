@@ -6,4 +6,17 @@ router.get('/', async (req, res) => {
 	res.json(particulars)
 })
 
+router.post('/', async (req, res) => {
+	try {
+		const { name, type } = req.body
+		const newParticular = await Particular.create({
+			name,
+			type,
+		})
+		res.json(newParticular)
+	} catch (error) {
+		res.status(400).json({ error: error.message })
+	}
+})
+
 module.exports = router
