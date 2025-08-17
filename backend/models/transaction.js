@@ -47,6 +47,15 @@ Transaction.init(
 			type: DataTypes.STRING,
 			allowNull: true,
 		},
+		clientId: {
+			type: DataTypes.INTEGER,
+			allowNull: false,
+			references: {
+				model: 'clients',
+				key: 'id',
+			},
+			onDelete: 'CASCADE',
+		},
 	},
 	{
 		sequelize,
